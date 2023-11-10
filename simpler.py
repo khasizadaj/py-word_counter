@@ -5,12 +5,16 @@ from collections import Counter
 
 FREQUENCY = Counter()
 
-with open("input.txt", mode="r", encoding="utf-8") as input_file:
-    for line in input_file:
-        # string.punctutation => !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-        cleaned_line = line.lower().translate(str.maketrans('', '', string.punctuation))
-        # cleaned_line = re.sub(f'[{string.punctuation}]', ' ', line.lower())
-        FREQUENCY.update(cleaned_line.split())
+try:
+    with open("input.txt", mode="r", encoding="utf-8") as input_file:
+        for line in input_file:
+            # string.punctutation => !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+            cleaned_line = line.lower().translate(str.maketrans('', '', string.punctuation))
+            # cleaned_line = re.sub(f'[{string.punctuation}]', ' ', line.lower())
+            FREQUENCY.update(cleaned_line.split())
+except FileNotFoundError:
+    print('"input.txt" faylı təmin edilməyib.')
+    exit(0)
 
 print("SÖZ".ljust(20, ' ') , "SAY".ljust(20, ' '))
 print("="*20, "="*20)
