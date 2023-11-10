@@ -19,7 +19,5 @@ istifadəçiyə təqdim edən bir skriptdir.
 -   **Mətnin üzərində əməliyyatlar (String manipulation)**
 -   **Dövrələr (Loops)**
 -   **Şərtlər (Conditionals)**
--   **Giriş/Çıxış əməliyyatları (Input/Output)**
--   **Siyahılar (Lists)**
 -   **Lüğətlər (Dictionaries)**
 -   **Səhvlərin idarə edilməsi (Error handling)**
