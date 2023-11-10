@@ -5,7 +5,7 @@
 Bu proqramın məqsədi verilən mətnin içindəki sözlərin tezliyini hesablayan və
 istifadəçiyə təqdim edən bir skriptdir.
 
-![word_counter-expected_result](../word_counter/static/word_counter-expected_result.png)
+![word_counter-expected_result](static/word_counter-expected_result.png)
 
 ## Proqramın tələbləri
 
