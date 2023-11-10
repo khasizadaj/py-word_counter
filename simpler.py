@@ -3,20 +3,20 @@ import re
 import string
 from collections import Counter
 
-frequency = Counter()
+FREQUENCY = Counter()
 
 with open("input.txt", mode="r", encoding="utf-8") as input_file:
     for line in input_file:
         # string.punctutation => !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-        cleaned_line = re.sub(f'[{string.punctuation}]', ' ', line).lower()
-        frequency.update(cleaned_line.split())
+        cleaned_line = line.lower().translate(str.maketrans('', '', string.punctuation))
+        # cleaned_line = re.sub(f'[{string.punctuation}]', ' ', line.lower())
+        FREQUENCY.update(cleaned_line.split())
 
-# Print the word frequencies in descending order
 print("SÖZ".ljust(20, ' ') , "SAY".ljust(20, ' '))
 print("="*20, "="*20)
-for word, count in frequency.most_common():
+for word, count in FREQUENCY.most_common():
     print(word.ljust(20, ' ') , count)
 
 print("="*20, "="*20)
-print("Fərqli söz sayı".ljust(20, ' ') , f"{len(frequency)}".ljust(20, ' '))
-print("Ümumi söz sayı".ljust(20, ' ') , f"{frequency.total()}".ljust(20, ' '))
+print("Fərqli söz sayı".ljust(20, ' ') , f"{len(FREQUENCY)}".ljust(20, ' '))
+print("Ümumi söz sayı".ljust(20, ' ') , f"{FREQUENCY.total()}".ljust(20, ' '))

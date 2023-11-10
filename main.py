@@ -1,37 +1,35 @@
 import re
 import string
 
-frequency = {}
-total_word_count = 0
+FREQUENCY = {}
+TOTAL_WORD_COUNT = 0
 
 with open("input.txt", mode="r", encoding="utf-8") as input_file:
     while True:
         line = input_file.readline()
         if line:
             # string.punctutation => !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-            cleaned_line = re.sub(f'[{string.punctuation}]', ' ', line).lower()
+            cleaned_line = line.lower().translate(str.maketrans('', '', string.punctuation))
+            # cleaned_line = re.sub(f'[{string.punctuation}]', ' ', line).lower()
 
-            words = line.split()
+            words = cleaned_line.split()
             for word in words:
-                # print(f"Söz: {word}")
-                if frequency.get(word, None) is None:
-                    frequency[word] = 1
-                    total_word_count += 1
-                    # print(f"Yeni söz tapıldı: {word}")
+                if FREQUENCY.get(word, None) is None:
+                    FREQUENCY[word] = 1
+                    TOTAL_WORD_COUNT += 1
                 else:
-                    frequency[word] += 1
-                    total_word_count += 1
-                    # print(f"Təkrar söz tapıldı: {word} ({frequency[word]})")
+                    FREQUENCY[word] += 1
+                    TOTAL_WORD_COUNT += 1
         else:
             break
 
 print("SÖZ".ljust(20, ' ') , "SAY".ljust(20, ' '))
 print("="*20, "="*20)
 already_printed = []
-for i in range(total_word_count):
+for i in range(TOTAL_WORD_COUNT):
     max_count = 1
     max_word: str  = ''
-    for word, count in frequency.items():
+    for word, count in FREQUENCY.items():
         if count >= max_count and word not in already_printed:
             max_count = count
             max_word = word
@@ -41,5 +39,5 @@ for i in range(total_word_count):
         already_printed.append(max_word)
 
 print("="*20, "="*20)
-print("Fərqli söz sayı".ljust(20, ' ') , f"{len(frequency)}".ljust(20, ' '))
-print("Ümumi söz sayı".ljust(20, ' ') , f"{total_word_count}".ljust(20, ' '))
+print("Fərqli söz sayı".ljust(20, ' ') , f"{len(FREQUENCY)}".ljust(20, ' '))
+print("Ümumi söz sayı".ljust(20, ' ') , f"{TOTAL_WORD_COUNT}".ljust(20, ' '))
